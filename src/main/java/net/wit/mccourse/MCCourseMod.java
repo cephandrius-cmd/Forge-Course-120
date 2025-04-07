@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.wit.mccourse.block.ModBlocks;
 import net.wit.mccourse.item.ModItems;
 import org.slf4j.Logger;
 
@@ -28,8 +29,9 @@ public class MCCourseMod {
     public MCCourseMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        // Register the ModItems class
+        // Register classes
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -52,6 +54,8 @@ public class MCCourseMod {
             event.accept(ModItems.RAW_ALEXANDRITE);
         }
 
+        if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+            event.accept(ModBlocks.ALEXANDRITE_BLOCK);
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
